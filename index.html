@@ -130,14 +130,11 @@ the motion, not for frame-by-frame agreement with the expert.</p>
   <figcaption>Expert against FOCUS-L2 with no alignment (0.97x expert), FOCUS-OT-L2 (0.99x) and FOCUS-OT-Cos (0.99x), at the 10M budget.</figcaption>
 </figure>
 </div>
-<footer><p>Each clip is one full episode: 1000 environment steps at
-60&nbsp;Hz, played back at 60&nbsp;fps, so it runs in real time with nothing
-cut, retimed or sped up. The expert panel replays a recorded demonstration;
-each learner panel is a live policy rollout. Each learner panel is a single
-seed and the return printed on it is that seed's own; several of these
-objectives are bimodal across seeds, so a panel shows what the objective
-produces when it works rather than its average. Aggregate comparisons, budgets
-and per-task results are in Appendix&nbsp;C.</p></footer>
+<footer><p>Each clip shows one full episode of 1000 environment steps,
+simulated at 60&nbsp;Hz and played at 60&nbsp;fps, so it runs in real time with
+nothing cut or retimed. The expert panel replays a recorded demonstration; each
+learner panel is a policy rollout, and the return printed on it is that
+policy's own, relative to the expert.</p></footer>
 </div></main>
 <script>
 // Only one clip plays at a time. These are 1000-frame videos; decoding
