@@ -51,6 +51,7 @@
     margin:0 0 36px; color:var(--muted); font-size:.95rem; box-shadow:var(--shadow); }
   .note strong { color:var(--fg); }
   .note p { margin:0; }
+  .note p + p { margin-top:11px; }
   .legend { display:flex; flex-wrap:wrap; gap:7px 18px; margin-top:14px;
     padding-top:13px; border-top:1px solid var(--line); }
   .legend span { display:inline-flex; align-items:center; gap:8px;
@@ -98,6 +99,12 @@ bodies are bone meshes. Camera distance is fixed within a comparison and
 follows the body, so panels compare directly in scale. Each learner clip is the
 configuration reported in the paper, at the reported budget, with the return it
 reached given per task.</p>
+<p><strong>The panels are not synchronised, by design.</strong> Every episode
+starts from its own randomly perturbed state, so the panels do not share a
+first frame and their gaits drift apart in phase. That is the setting the
+method is built for: FOCUS assumes neither expert-aligned initialisation nor
+teacher forcing, so a clip should be read for the quality and periodicity of
+the motion, not for frame-by-frame agreement with the expert.</p>
 <div class="legend"><span><i style="background:#c98a3c"></i>Expert</span><span><i style="background:#8a6fb0"></i>FOCUS-L2</span><span><i style="background:#3f7fbf"></i>FOCUS-OT-L2</span><span><i style="background:#4a9e6a"></i>FOCUS-OT-Cos</span></div>
 </div>
 <div class="grid">
