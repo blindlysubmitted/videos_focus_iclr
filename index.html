@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FOCUS &mdash; Videos</title>
+<style>
+  :root {
+    --bg:#fbfcfd; --panel:#ffffff; --fg:#0f141a; --muted:#5a6774;
+    --line:#e4eaf0; --accent:#2f6fb8; --accent-soft:#eaf2fb; --chip:#f4f7fa;
+    --shadow:0 1px 2px rgba(15,20,26,.04), 0 10px 28px rgba(15,20,26,.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#0d1115; --panel:#151a20; --fg:#e9eef3; --muted:#98a5b2;
+      --line:#222b34; --accent:#6aa9e8; --accent-soft:#16212d; --chip:#101820;
+      --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 32px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#0d1115; --panel:#151a20; --fg:#e9eef3; --muted:#98a5b2;
+    --line:#222b34; --accent:#6aa9e8; --accent-soft:#16212d; --chip:#101820;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 32px rgba(0,0,0,.4);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",
+      Roboto,"Helvetica Neue",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1060px; margin:0 auto; padding:0 20px; }
+  header .wrap { max-width:1160px; }
+  header { border-bottom:1px solid var(--line); background:
+    radial-gradient(1100px 380px at 12% -20%, var(--accent-soft), transparent 62%),
+    radial-gradient(880px 320px at 92% -10%, var(--accent-soft), transparent 58%); }
+  header .wrap { padding:68px 20px 52px; text-align:center; }
+  .eyebrow { display:inline-block; font-size:.75rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--accent); font-weight:650;
+    border:1px solid var(--line); background:var(--panel);
+    padding:5px 12px; border-radius:999px; margin-bottom:22px; }
+  /* `balance` evens the lines instead of filling each one to the edge, which
+     is what produced the lopsided title break. The max-width keeps it to two
+     lines on a desktop; `balance` then picks where they fall. */
+  h1 { font-size:clamp(1.65rem,3.6vw,2.45rem); line-height:1.2; margin:0 auto 28px;
+    letter-spacing:-.025em; font-weight:700; max-width:1110px;
+    text-wrap:pretty; overflow-wrap:break-word; }
+  .abstract { max-width:84ch; margin:0 auto; }
+  .abstract .label { display:block; font-size:.74rem; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--muted); font-weight:650; margin-bottom:9px; }
+  .abstract p { margin:0; color:var(--muted); font-size:.99rem;
+    text-align:justify; text-justify:inter-word; hyphens:none; }
+  main { padding:40px 0 84px; }
+  .note { background:var(--panel); border:1px solid var(--line);
+    border-left:3px solid var(--accent); border-radius:12px; padding:18px 20px;
+    margin:0 0 36px; color:var(--muted); font-size:.95rem; box-shadow:var(--shadow); }
+  .note strong { color:var(--fg); }
+  .note p { margin:0; }
+  .legend { display:flex; flex-wrap:wrap; gap:7px 18px; margin-top:14px;
+    padding-top:13px; border-top:1px solid var(--line); }
+  .legend span { display:inline-flex; align-items:center; gap:8px;
+    font-size:.88rem; color:var(--fg); }
+  .legend i { width:13px; height:13px; border-radius:3px; display:inline-block;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.12); }
+  .grid { display:grid; gap:28px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    overflow:hidden; box-shadow:var(--shadow); }
+  .head { display:flex; align-items:center; gap:13px; flex-wrap:wrap;
+    padding:17px 20px 14px; border-bottom:1px solid var(--line); }
+  .head h2 { font-size:1.08rem; margin:0; font-weight:650; letter-spacing:-.012em; }
+  .head .n { color:var(--muted); font-size:.88rem; }
+  .toggle { margin-left:auto; display:inline-flex; background:var(--chip);
+    border:1px solid var(--line); border-radius:999px; padding:3px; gap:2px; }
+  .toggle button { border:0; background:transparent; color:var(--muted);
+    font:inherit; font-size:.85rem; font-weight:600; padding:5px 15px;
+    border-radius:999px; cursor:pointer; transition:background .15s,color .15s; }
+  .toggle button:hover { color:var(--fg); }
+  .toggle button[aria-pressed="true"] { background:var(--accent); color:#fff; }
+  video { width:100%; height:auto; display:block; background:#eef1f5; }
+  video[hidden] { display:none; }
+  figcaption { padding:15px 20px 19px; color:var(--muted); font-size:.92rem; }
+  footer { border-top:1px solid var(--line); margin-top:52px; padding:20px 0 0;
+    color:var(--muted); font-size:.76rem; line-height:1.55; }
+  footer p { margin:0; }
+  @media (max-width:640px) { header .wrap { padding-top:44px; }
+    .toggle { margin-left:0; width:100%; } .toggle button { flex:1; } }
+</style></head>
+<body>
+<header><div class="wrap">
+  <span class="eyebrow">ICLR &mdash; submission 44492</span>
+  <h1>First-Order Control Using Optimal Transport Supervision for Imitation from Observations</h1>
+  <div class="abstract">
+    <span class="label">Abstract</span>
+    <p>Imitation learning from observations must recover behavior from state-only demonstrations without known temporal correspondence. Differentiable simulators provide pathwise policy gradients, but differentiating through long, contact-rich trajectories can make optimization unstable. We introduce FOCUS, which combines local optimal-transport alignment with short-horizon differentiable actor–critic learning. FOCUS matches agent rollout windows to multiple sampled expert segments using a soft best-of-K objective that emphasizes locally compatible matches. The resulting transport-based costs provide differentiable imitation rewards, while a learned critic bootstraps value beyond the rollout horizon. FOCUS requires neither temporally aligned trajectories nor expert-aligned initialization or teacher forcing. Across contact-rich locomotion tasks in DFlex, including a musculoskeletal humanoid controlled by 152 muscle activations, FOCUS improves sample efficiency and training stability over adversarial imitation-from-observation methods and prior differentiable imitation baselines.</p>
+  </div>
+</div></header>
+<main><div class="wrap">
+<div class="note">
+<p><strong>Reading the panels.</strong> Panel order is the same in every
+clip and each method keeps its colour across tasks; the coloured square by each
+label repeats it, which is what tells the SNU panels apart, since there the
+bodies are bone meshes. Camera distance is fixed within a comparison and
+follows the body, so panels compare directly in scale. Each learner clip is the
+configuration reported in the paper, at the reported budget, with the return it
+reached given per task.</p>
+<div class="legend"><span><i style="background:#c98a3c"></i>Expert</span><span><i style="background:#8a6fb0"></i>FOCUS-L2</span><span><i style="background:#3f7fbf"></i>FOCUS-OT-L2</span><span><i style="background:#4a9e6a"></i>FOCUS-OT-Cos</span></div>
+</div>
+<div class="grid">
+<figure class="card">
+  <div class="head"><h2>SNU Humanoid</h2><span class="n">152 muscle actuators</span><div class="toggle"><button type="button" data-view="Muscles" aria-pressed="true">Muscles</button><button type="button" data-view="Skeleton" aria-pressed="false">Skeleton</button></div></div>
+  <video data-view="Muscles" controls loop muted playsinline preload="metadata" src="snu_humanoid_muscles.mp4"></video>
+  <video data-view="Skeleton" controls loop muted playsinline preload="metadata" src="snu_humanoid_skeleton.mp4" hidden></video>
+  <figcaption>Expert demonstration against three alignment objectives at the 15M interaction budget: FOCUS-L2 with no alignment (0.82x expert), FOCUS-OT-L2 (0.96x) and FOCUS-OT-Cos (0.88x). Drawn from the model&#x27;s own bone meshes; the dflex SNU model is a lower body, so pelvis, femurs, tibiae, tali and foot segments are the whole articulation. The muscle view overlays all 152 actuators, coloured from blue at rest to red at full contraction -- activation is the policy&#x27;s action divided by each muscle&#x27;s strength, which is the quantity the simulator applies, and the expert&#x27;s comes from its recorded actions.</figcaption>
+</figure>
+<figure class="card">
+  <div class="head"><h2>Humanoid</h2><span class="n">21 actuated joints</span></div>
+  <video data-view="Rollouts" controls loop muted playsinline preload="metadata" src="humanoid_expert_vs_variants.mp4"></video>
+  <figcaption>Expert against FOCUS-L2 with no alignment (0.87x expert), FOCUS-OT-L2 (0.94x) and FOCUS-OT-Cos (0.98x), at the 15M budget.</figcaption>
+</figure>
+<figure class="card">
+  <div class="head"><h2>Ant</h2><span class="n">8 actuated joints</span></div>
+  <video data-view="Rollouts" controls loop muted playsinline preload="metadata" src="ant_expert_vs_variants.mp4"></video>
+  <figcaption>Expert against FOCUS-L2 with no alignment (0.68x expert), FOCUS-OT-L2 (1.00x) and FOCUS-OT-Cos (0.91x), at the 10M budget.</figcaption>
+</figure>
+<figure class="card">
+  <div class="head"><h2>Hopper</h2><span class="n">3 actuated joints</span></div>
+  <video data-view="Rollouts" controls loop muted playsinline preload="metadata" src="hopper_expert_vs_variants.mp4"></video>
+  <figcaption>Expert against FOCUS-L2 with no alignment (0.97x expert), FOCUS-OT-L2 (0.99x) and FOCUS-OT-Cos (0.99x), at the 10M budget.</figcaption>
+</figure>
+</div>
+<footer><p>Each clip is one full episode: 1000 environment steps at
+60&nbsp;Hz, played back at 60&nbsp;fps, so it runs in real time with nothing
+cut, retimed or sped up. The expert panel replays a recorded demonstration;
+each learner panel is a live policy rollout. Quoted returns come from the
+paper's own evaluation; budgets and per-task results are in
+Appendix&nbsp;C.</p></footer>
+</div></main>
+<script>
+// Only one clip plays at a time. These are 1000-frame videos; decoding
+// several at once costs the viewer's machine a lot for nothing, since only
+// one can be watched.
+document.querySelectorAll('video').forEach(v => {
+  v.addEventListener('play', () => {
+    document.querySelectorAll('video').forEach(o => {
+      if (o !== v && !o.paused) o.pause();
+    });
+  });
+});
+
+document.querySelectorAll('.card').forEach(card => {
+  const btns = card.querySelectorAll('.toggle button');
+  if (!btns.length) return;
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    const want = btn.dataset.view;
+    btns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    card.querySelectorAll('video').forEach(v => {
+      const on = v.dataset.view === want;
+      if (on) { v.currentTime = 0; } else { v.pause(); }
+      v.hidden = !on;
+      if (on) { v.play().catch(() => {}); }
+    });
+  }));
+});
+</script>
+</body></html>
