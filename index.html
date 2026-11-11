@@ -133,9 +133,11 @@ the motion, not for frame-by-frame agreement with the expert.</p>
 <footer><p>Each clip is one full episode: 1000 environment steps at
 60&nbsp;Hz, played back at 60&nbsp;fps, so it runs in real time with nothing
 cut, retimed or sped up. The expert panel replays a recorded demonstration;
-each learner panel is a live policy rollout. Quoted returns come from the
-paper's own evaluation; budgets and per-task results are in
-Appendix&nbsp;C.</p></footer>
+each learner panel is a live policy rollout. Each learner panel is a single
+seed and the return printed on it is that seed's own; several of these
+objectives are bimodal across seeds, so a panel shows what the objective
+produces when it works rather than its average. Aggregate comparisons, budgets
+and per-task results are in Appendix&nbsp;C.</p></footer>
 </div></main>
 <script>
 // Only one clip plays at a time. These are 1000-frame videos; decoding
