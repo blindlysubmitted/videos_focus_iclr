@@ -43,6 +43,8 @@
   .abstract { max-width:84ch; margin:0 auto; }
   .abstract .label { display:block; font-size:.74rem; letter-spacing:.11em;
     text-transform:uppercase; color:var(--muted); font-weight:650; margin-bottom:9px; }
+  .abstract p + p { margin-top:12px; }
+  .abstract p strong { color:var(--fg); font-weight:650; }
   .abstract p { margin:0; color:var(--muted); font-size:.99rem;
     text-align:justify; text-justify:inter-word; hyphens:none; }
   main { padding:40px 0 84px; }
@@ -87,7 +89,10 @@
   <h1>First-Order Control Using Optimal Transport Supervision for Imitation from Observations</h1>
   <div class="abstract">
     <span class="label">Abstract</span>
-    <p>Imitation learning from observations must recover behavior from state-only demonstrations without known temporal correspondence. Differentiable simulators provide pathwise policy gradients, but differentiating through long, contact-rich trajectories can make optimization unstable. We introduce FOCUS, which combines local optimal-transport alignment with short-horizon differentiable actor–critic learning. FOCUS matches agent rollout windows to multiple sampled expert segments using a soft best-of-K objective that emphasizes locally compatible matches. The resulting transport-based costs provide differentiable imitation rewards, while a learned critic bootstraps value beyond the rollout horizon. FOCUS requires neither temporally aligned trajectories nor expert-aligned initialization or teacher forcing. Across contact-rich locomotion tasks in DFlex, including a musculoskeletal humanoid controlled by 152 muscle activations, FOCUS improves sample efficiency and training stability over adversarial imitation-from-observation methods and prior differentiable imitation baselines.</p>
+    <p>Imitation learning from observations must recover behavior from state-only demonstrations without known temporal correspondence. Differentiable simulators provide pathwise policy gradients, but differentiating through long, contact-rich trajectories can make optimization unstable.</p>
+    <p>We introduce FOCUS, which combines <strong>local optimal-transport alignment with short-horizon differentiable actor–critic learning</strong>. FOCUS matches agent rollout windows to multiple sampled expert segments using a soft best-of-K objective that emphasizes locally compatible matches. The resulting transport-based costs provide differentiable imitation rewards, while a learned critic bootstraps value beyond the rollout horizon.</p>
+    <p><strong>FOCUS requires neither temporally aligned trajectories nor expert-aligned initialization or teacher forcing.</strong></p>
+    <p>Across contact-rich locomotion tasks in DFlex, including <strong>a musculoskeletal humanoid controlled by 152 muscle activations</strong>, FOCUS improves sample efficiency and training stability over adversarial imitation-from-observation methods and prior differentiable imitation baselines.</p>
   </div>
 </div></header>
 <main><div class="wrap">
@@ -106,7 +111,7 @@ expert.</p>
   <div class="head"><h2>SNU Humanoid</h2><span class="n">152 muscle actuators</span><div class="toggle"><button type="button" data-view="Muscles" aria-pressed="true">Muscles</button><button type="button" data-view="Skeleton" aria-pressed="false">Skeleton</button></div></div>
   <video data-view="Muscles" controls loop muted playsinline preload="metadata" src="snu_humanoid_muscles.mp4"></video>
   <video data-view="Skeleton" controls loop muted playsinline preload="metadata" src="snu_humanoid_skeleton.mp4" hidden></video>
-  <figcaption>Expert demonstration against three alignment objectives at the 15M interaction budget: FOCUS-L2 with no alignment (0.82x expert), FOCUS-OT-L2 (0.96x) and FOCUS-OT-Cos (0.88x). Drawn from the model&#x27;s own bone meshes; the dflex SNU model is a lower body, so pelvis, femurs, tibiae, tali and foot segments are the whole articulation. The muscle view overlays all 152 actuators, coloured from blue at rest to red at full contraction -- activation is the policy&#x27;s action divided by each muscle&#x27;s strength, which is the quantity the simulator applies, and the expert&#x27;s comes from its recorded actions.</figcaption>
+  <figcaption>Expert against FOCUS-L2 with no alignment (0.82x expert), FOCUS-OT-L2 (0.96x) and FOCUS-OT-Cos (0.88x), at the 15M budget. The DFlex SNU model is a lower body (pelvis, femurs, tibiae, tali and feet) and is drawn with its bone meshes. The muscle view adds the 152 muscles, coloured by activation from blue at rest to red at full contraction. The learner&#x27;s activations are the policy&#x27;s actions and the expert&#x27;s are its recorded actions.</figcaption>
 </figure>
 <figure class="card">
   <div class="head"><h2>Humanoid</h2><span class="n">21 actuated joints</span></div>
@@ -127,8 +132,8 @@ expert.</p>
 <footer><p>Each clip shows one full episode of 1000 environment steps,
 simulated at 60&nbsp;Hz and played at 60&nbsp;fps, so it runs in real time with
 nothing cut or retimed. The expert panel replays a recorded demonstration; each
-learner panel is a policy rollout, and the return printed on it is that
-policy's own, relative to the expert.</p></footer>
+learner panel is a policy rollout. The return given for each method in a
+caption is that policy's own, as a multiple of the expert's.</p></footer>
 </div></main>
 <script>
 // Only one clip plays at a time. These are 1000-frame videos; decoding
