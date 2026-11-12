@@ -92,19 +92,13 @@
 </div></header>
 <main><div class="wrap">
 <div class="note">
-<p><strong>Reading the panels.</strong> Panel order is the same in every
-clip and each method keeps its colour across tasks; the coloured square by each
-label repeats it, which is what tells the SNU panels apart, since there the
-bodies are bone meshes. Camera distance is fixed within a comparison and
-follows the body, so panels compare directly in scale. Each learner clip is the
-configuration reported in the paper, at the reported budget, with the return it
-reached given per task.</p>
-<p><strong>The panels are not synchronised, by design.</strong> Every episode
-starts from its own randomly perturbed state, so the panels do not share a
-first frame and their gaits drift apart in phase. That is the setting the
-method is built for: FOCUS assumes neither expert-aligned initialisation nor
-teacher forcing, so a clip should be read for the quality and periodicity of
-the motion, not for frame-by-frame agreement with the expert.</p>
+<p><strong>Reading the clips.</strong> Each learner clip is the
+configuration reported in the paper, at the reported budget. The panels are not
+synchronised, by design: every episode starts from its own randomly perturbed
+state, so the gaits drift apart in phase. FOCUS assumes neither expert-aligned
+initialisation nor teacher forcing, so a clip should be read for the quality
+and periodicity of the motion, not for frame-by-frame agreement with the
+expert.</p>
 <div class="legend"><span><i style="background:#c98a3c"></i>Expert</span><span><i style="background:#8a6fb0"></i>FOCUS-L2</span><span><i style="background:#3f7fbf"></i>FOCUS-OT-L2</span><span><i style="background:#4a9e6a"></i>FOCUS-OT-Cos</span></div>
 </div>
 <div class="grid">
